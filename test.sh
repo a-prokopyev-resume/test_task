@@ -24,12 +24,9 @@ bashopts_setup -n "test.sh" -d "Home work task";
 	bashopts_declare -n COUNT -l cnt -o c -d "Count of how many arp pings shall be done" -t number -r;
 bashopts_parse_args "$@"; bashopts_process_opts;
 
-set -x;
-
 for SUBNET in {1..255}; do
 	for HOST in {1..255}; do
 		echo "[*] IP : ${PREFIX}.${SUBNET}.${HOST}";
 		arping -c "$COUNT" -I "$INTERFACE" "${PREFIX}.${SUBNET}.${HOST}" || true 2> /dev/null;
-		echo test
 	done;
 done;
